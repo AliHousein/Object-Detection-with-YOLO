@@ -8,10 +8,10 @@ from flask import Flask, render_template, request, jsonify, send_from_directory,
 from ultralytics import YOLO
 
 # ---------- Config ----------
-MODEL_PATH = os.getenv("MODEL_PATH", "weights/best.pt")  # you can override via env var
-CONF_THRESHOLD = float(os.getenv("CONF_THRESHOLD", "0.25"))
-UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER", "uploads")
-OUTPUT_FOLDER = os.getenv("OUTPUT_FOLDER", "outputs")
+MODEL_PATH = "weights/yolov8s.pt"
+CONF_THRESHOLD = "0.25"
+UPLOAD_FOLDER = "uploads"
+OUTPUT_FOLDER = "outputs"
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
