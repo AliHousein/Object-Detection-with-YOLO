@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YOLOv8 Object Detection (Pen & Scissors)</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>YOLOv8 Object Detection</h1>
+    <p class="subtitle">Upload an image to detect <strong>pen</strong> and <strong>scissors</strong>.</p>
+
+    <form id="upload-form">
+      <input type="file" id="image-input" name="image" accept="image/*" required />
+      <button type="submit">Detect</button>
+    </form>
+
+    <div id="result" class="result hidden">
+      <h2>Result</h2>
+      <img id="result-img" alt="Detection result"/>
+      <pre id="json-output"></pre>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('upload-form');
+    const imageInput = document.getElementById('image-input');
+    const resultDiv = document.getElementById('result');
+    const resultImg = document.getElementById('result-img');
+    const jsonOutput = document.getElementById('json-output');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!imageInput.files.length) return;
+
+      const fd = new FormData();
+      fd.append('image', imageInput.files[0]);
+
+      const resp = await fetch('/predict', { method: 'POST', body: fd });
+      const data = await resp.json();
+
+      if (!resp.ok) {
+        alert(data.error || 'Prediction failed');
+        return;
+      }
+
+      resultImg.src = data.output_image_url;
+      jsonOutput.textContent = JSON.stringify(data.detections, null, 2);
+      resultDiv.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
