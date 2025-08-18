@@ -46,7 +46,6 @@ Users can upload an image and instantly receive detection results as an **annota
 
 ```bash
 git clone https://github.com/AliHousein/Object-Detection-with-YOLO.git
-cd yolov8-object-detection
 ```
 
 ### 2. Run Locally (without Docker)
