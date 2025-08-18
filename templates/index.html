@@ -29,7 +29,6 @@
     const imageInput = document.getElementById('image-input');
     const resultDiv = document.getElementById('result');
     const resultImg = document.getElementById('result-img');
-    const jsonOutput = document.getElementById('json-output');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -47,7 +46,6 @@
       }
 
       resultImg.src = data.output_image_url;
-      jsonOutput.textContent = JSON.stringify(data.detections, null, 2);
       resultDiv.classList.remove('hidden');
     });
   </script>

@@ -8,4 +8,3 @@ form { display: flex; gap: 12px; align-items: center; margin: 16px 0 24px; }
 button { padding: 10px 16px; border: 1px solid #ccc; border-radius: 8px; cursor: pointer; }
 .result.hidden { display: none; }
 .result img { max-width: 100%; border: 1px solid #eee; border-radius: 8px; }
-pre { background: #111; color: #eaeaea; padding: 12px; border-radius: 8px; overflow: auto; }

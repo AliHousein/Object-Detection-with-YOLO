@@ -8,8 +8,8 @@ from flask import Flask, render_template, request, jsonify, send_from_directory,
 from ultralytics import YOLO
 
 # ---------- Config ----------
-MODEL_PATH = "weights/yolov8s.pt"
-CONF_THRESHOLD = "0.25"
+MODEL_PATH = "weights/best.pt"
+CONF_THRESHOLD = 0.1
 UPLOAD_FOLDER = "uploads"
 OUTPUT_FOLDER = "outputs"
 
@@ -90,7 +90,7 @@ def predict():
     return jsonify({
         "uploaded_filename": file.filename,
         "output_image_url": f"/outputs/{out_name}",
-        "detections": detections,
+        # "detections": detections,
         "timestamp": datetime.utcnow().isoformat() + "Z"
     })
 
@@ -101,10 +101,6 @@ def serve_output(filename):
         abort(400)
     return send_from_directory(OUTPUT_FOLDER, filename, as_attachment=False)
 
-# Simple health endpoint
-@app.route("/health", methods=["GET"])
-def health():
-    return jsonify({"status": "ok"}), 200
 
 if __name__ == "__main__":
     # For local dev; in Docker we use gunicorn

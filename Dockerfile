@@ -1,32 +1,31 @@
-
-# Use a lightweight Python base image
 FROM python:3.10-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
-    UVICORN_WORKERS=1 \
     MPLCONFIGDIR=/tmp/matplotlib
 
-# System packages often required by scientific stacks
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git curl build-essential libgl1 libglib2.0-0 && \
+    libgl1 libglib2.0-0 && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Install Python deps first (better caching)
-COPY requirements.txt ./
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Install CPU-only torch + torchvision
+RUN pip install --no-cache-dir torch==2.3.1 torchvision==0.18.1 --index-url https://download.pytorch.org/whl/cpu
+
+# Install ultralytics separately
+RUN pip install --no-cache-dir ultralytics==8.3.0
+
+# Install remaining dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy app
 COPY . .
 
-# Create a place for model weights (mounted or baked-in)
 RUN mkdir -p /app/weights /app/uploads /app/outputs
 
-# Expose port
 EXPOSE 5000
 
-# Use gunicorn for prod; bind 0.0.0.0:5000
 CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5000", "app:app"]
