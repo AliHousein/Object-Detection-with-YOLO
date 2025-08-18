@@ -28,4 +28,4 @@ RUN mkdir -p /app/weights /app/uploads /app/outputs
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "-w", "1", "--threads", "1", "--timeout", "300", "-b", "0.0.0.0:5000", "app:app"]
