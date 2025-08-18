@@ -45,7 +45,7 @@ Users can upload an image and instantly receive detection results as an **annota
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/yolov8-object-detection.git
+git clone https://github.com/AliHousein/Object-Detection-with-YOLO.git
 cd yolov8-object-detection
 ```
 
@@ -69,7 +69,7 @@ Visit 👉 http://localhost:5000
 docker build -t yolo-flask .
 
 # Run container
-docker run -p 5000:5000   -e MODEL_PATH=weights/best.pt   -e CONF_THRESHOLD=0.25   yolo-flask
+docker run -p 5000:5000  -e MODEL_PATH=weights/best.pt yolo-flask
 ```
 
 Visit 👉 http://localhost:5000
@@ -83,29 +83,6 @@ Visit 👉 http://localhost:5000
 3. Receive:
     - **Annotated image** with bounding boxes
 
-Example JSON response:
-
-```json
-{
-    "uploaded_filename": "test.jpg",
-    "output_image_url": "/outputs/abcd1234_pred.jpg",
-    "detections": [
-        {
-            "class_id": 0,
-            "class_name": "pen",
-            "confidence": 0.73,
-            "box_xyxy": [100, 50, 200, 300]
-        },
-        {
-            "class_id": 1,
-            "class_name": "scissors",
-            "confidence": 0.92,
-            "box_xyxy": [300, 120, 450, 400]
-        }
-    ],
-    "timestamp": "2025-08-17T09:12:34Z"
-}
-```
 
 ---
 
@@ -121,7 +98,7 @@ Example JSON response:
 ## 📈 Future Improvements
 
 -   Expand dataset with more diverse pen images.
--   Use higher resolution & larger YOLOv8 backbone (`yolov8m.pt`)
+-   Use higher resolution & larger YOLOv8 backbone (`yolov8m.pt`).
 -   Enhance UI (drag-and-drop upload, webcam support)
 
 ---
