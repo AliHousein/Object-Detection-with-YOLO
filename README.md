@@ -1,4 +1,4 @@
-<img width="244" height="81" alt="image" src="https://github.com/user-attachments/assets/2a3e667e-868d-4a90-997b-a9280bbd89b3" /># YOLOv8 Object Detection — Pen & Scissors (Flask + Docker)
+# YOLOv8 Object Detection — Pen & Scissors (Flask + Docker)
 
 ![Demo Preview](static/demo_preview.gif)
 
