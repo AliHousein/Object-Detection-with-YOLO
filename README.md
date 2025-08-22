@@ -1,4 +1,4 @@
-# YOLOv8 Object Detection — Pen & Scissors (Flask + Docker)
+<img width="244" height="81" alt="image" src="https://github.com/user-attachments/assets/2a3e667e-868d-4a90-997b-a9280bbd89b3" /># YOLOv8 Object Detection — Pen & Scissors (Flask + Docker)
 
 ![Demo Preview](static/demo_preview.gif)
 
@@ -15,7 +15,7 @@ Users can upload an image and instantly receive detection results as an **annota
 -   Flask web interface with image upload form.
 -   Returns **annotated image**.
 -   Containerized with Docker for easy deployment.
--   Ready for free cloud hosting (Render).
+-   Ready for free cloud hosting [Railway](https://railway.com/).
 
 ---
 
